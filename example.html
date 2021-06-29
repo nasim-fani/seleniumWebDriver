@@ -11,35 +11,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5">   <!-- Non-Compliant -->
+    <meta name="description" content="...">
     <title>Document</title>
 </head>
 <body >
 <!--QUESTION 4 & 2-->
-<h1 style="color:blue"  align="center"> mamad </h1>
-<a href="http://res.jpg">a</a>
-<a href="http://ress.html" >b</a>
+  <h1 style="color:blue"  align="center"> mamad </h1>
+  <a href="http://res.jpg">a</a>
+  <a href="http://ress.html" >b</a>
 
+<!--  QUESTION 5: Noncompliant; same text, different targets-->
+  <a href="a.html">qux</a>
+  <a href="b.html">qux</a>
 
+  <a href="c.html">foo</a>
+  <a href="d.html">foo</a>
 
+<!--  QUESTION 5: Compliant; different text, different targets-->
+  <a href="g.html">qux1</a>
+  <a href="s.html">qaz1</a>
 
-<!--QUESTION 3-->
-<!--<head profile="test">-->
-<!--  <meta http-equiv="refresh" content="5">   &lt;!&ndash; Non-Compliant &ndash;&gt;-->
-<!--  <meta name="description" content="...">-->
-<!--</head>-->
-
-
-<!--QUESTION 5: Noncompliant; same text, different targets -->
-<!--<a href="a.html">qux</a>-->
-<!--<a href="b.html">qux</a>-->
-
-<!--<a href="c.html">foo</a>-->
-<!--<a href="d.html">foo</a>-->
-
-<!--QUESTION 5: Compliant; different text, different targets -->
-<!--<a href="a.html">qux</a>-->
-<!--<a href="b.html">qaz</a>-->
-<!--<a href="c.html">foo</a>-->
-<!--<a href="c.html">foo</a>-->
+  <a href="f.html">foo1</a>
+  <a href="f.html">foo1</a>
 </body>
 </html>

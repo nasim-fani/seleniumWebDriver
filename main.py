@@ -1,8 +1,5 @@
 import re
-import time
-
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 
 
 # QUESTION 1
@@ -14,7 +11,7 @@ def check_links_target(driver):
         href = str(link.get_attribute("href"))
         exist = image_extensions.search(href)
         if exist is not None:
-            print("link with text:", link.text, "directly target image file:", href)
+            print("link with text:", link.text, ", directly targets image file:", href)
 
 
 # QUESTION 3
@@ -110,12 +107,11 @@ def check_deprecated_attribute(driver):
     elements = driver.find_elements_by_xpath("//*")
     for element in elements:
         tag_name = element.tag_name
-        for attribute in deprecated_attributes:
+        for attribute in deprecated_attributes:  # row
             if tag_name in deprecated_attributes[attribute]:
-                element_attrs = driver.execute_script(
+                element_attrs = driver.execute_script(  # get all attributes as a dictionary
                     'var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;',
                     element)
-
                 if attribute in element_attrs:
                     print("attribute:", attribute, "should not used in tag:", tag_name)
 
@@ -144,7 +140,7 @@ def check_links_text(driver):
             next_link = links[j]
             next_link_address = next_link.get_attribute("href")
             next_link_text = next_link.text
-            if current_link_text == next_link_text:
+            if current_link_text == next_link_text and current_link_text != "":
                 if current_link_address != next_link_address:
                     print("Links with identical texts should have identical targets:\ntext: ", current_link_text,
                           "\naddress 1: ", current_link_address, "\naddress 2: ", next_link_address)
@@ -216,15 +212,12 @@ def check_elements_overlap(driver):
                     print("in size:", str(windows_sizes[i]), "input:", str(j), "do overlap with input:", str(k))
 
 
-# driver = webdriver.Chrome('C:/Users/nasim/Downloads/chromedriver.exe')
-
-# URL = input("enter URL:")
-constant_url_1 = 'file:///home/alireza/Desktop/testing/UntitledFolder/seleniumWebDriver/example.html'
-constant_url_2 = 'file:///home/alireza/Desktop/testing/UntitledFolder/seleniumWebDriver/sample1.htm'
-constant_url_3 = 'file:///home/alireza/Desktop/testing/UntitledFolder/seleniumWebDriver/sample2.htm'
-
-driver = webdriver.Chrome('/home/alireza/Desktop/testing/UntitledFolder/seleniumWebDriver/chromedriver')
-driver.get(constant_url_3)
+URL = input("enter URL:")
+driverFirefox = webdriver.Firefox(executable_path='C:\\Users\\nasim\\Downloads\\geckodriver.exe')
+driverFirefox.get(URL)
+driver = webdriver.Chrome('C:/Users/nasim/Downloads/chromedriver.exe')
+# driver = webdriver.Chrome('/home/alireza/Desktop/testing/UntitledFolder/seleniumWebDriver/chromedriver')
+driver.get(URL)
 
 
 check_links_target(driver)
@@ -233,3 +226,5 @@ check_meta_tags(driver)
 check_style_attribute(driver)
 check_links_text(driver)
 check_elements_overlap(driver)
+check_elements_overlap(driverFirefox)
+# https://google.com
