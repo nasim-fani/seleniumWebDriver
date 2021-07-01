@@ -181,7 +181,7 @@ def check_elements_overlap(driver):
     windows_sizes = [[800, 600], [1024, 768], [1448, 1072], [1600, 1200], [2048, 1536]]
     for i in range(len(windows_sizes)):
         driver.set_window_size(windows_sizes[i][0], windows_sizes[i][1])
-        inputs = driver.find_elements_by_xpath("//input")
+        inputs = driver.find_elements_by_xpath("//input | //label | //select |  //textarea | //button | //fieldset | //legend | //datalist | //output | //option | //optgroup")
         for j in range(len(inputs)):
             current_input = inputs[j]
             current_input_location_top_left_y, current_input_location_top_left_x = current_input.location['y'], \
